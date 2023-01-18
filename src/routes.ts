@@ -94,7 +94,7 @@ router.put(
 )
 
 router.put(
-	'/users/:uUid/archiveTask/:tUid',
+	'/users/:uUid/unarchiveTask/:tUid',
 	checkUserMiddleware,
 	checkTaskMiddleware,
 	(req: Request, res: Response) => {
@@ -123,6 +123,14 @@ router.put(
 	checkUserMiddleware,
 	(req: Request, res: Response) => {
 		taskClass.returnArchivedTasks(req, res)
+	}
+)
+
+router.put(
+	'/users/:uUid/showUnarchivedTasks',
+	checkUserMiddleware,
+	(req: Request, res: Response) => {
+		taskClass.returnUnarchivedTasks(req, res)
 	}
 )
 

@@ -53,7 +53,9 @@ class Task {
 		console.log('api/task/getAllUserTasks')
 		const { uUid } = req.params
 
-		const userTasksList = tasksList.filter((f) => f.uUid === uUid)
+		const userTasksList = tasksList.filter(
+			(f) => f.uUid === uUid && f.isArchived === false
+		)
 
 		return res.status(200).json({
 			success: true,
@@ -203,6 +205,20 @@ class Task {
 		return res.status(200).json({
 			success: true,
 			message: 'Tarefas Arquivadas!',
+			data: userTasksList
+		} as StandardResponse)
+	}
+	returnUnarchivedTasks(req: Request, res: Response) {
+		console.log('api/task/returnUnarchivedTasks')
+		const { uUid } = req.params
+
+		const userTasksList = tasksList.filter(
+			(f) => f.uUid === uUid && f.isArchived === false
+		)
+
+		return res.status(200).json({
+			success: true,
+			message: 'Tarefas Desarquivadas!',
 			data: userTasksList
 		} as StandardResponse)
 	}

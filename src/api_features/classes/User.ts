@@ -51,11 +51,15 @@ class User {
 	}
 
 	checkUserLogin(req: Request, res: Response) {
+		console.log('api/checkLogInRequest')
+
 		const { email, password } = req.body
 
 		const findTargetUser = usersList.find(
 			(f) => f.email === email && f.password === password
 		)
+
+		console.log(findTargetUser)
 
 		if (!findTargetUser) {
 			return res.status(400).json({
@@ -68,7 +72,7 @@ class User {
 		return res.status(200).json({
 			success: true,
 			message: 'Usuário encontrado!',
-			data: null
+			data: findTargetUser
 		} as StandardResponse)
 	}
 }
